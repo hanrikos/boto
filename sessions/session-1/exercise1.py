@@ -1,32 +1,3 @@
-#*** Create a VPC ****
-#
-#- Write a script that gets 3 args: region, cidr, tenancy
-#
-#Example for parsing args function:
-#
-#hints/vpc/example_parse_args
-#
-#- Create the vpc with CIDR 10.21.0.0/16, in us-east-1 and tenancy default
-#
-#Example for creating a vpc:
-#hints/vpc/example_create_vpc
-#
-#
-#If you finished:
-#
-#- Use the method wait_until_available upon the vpc resource to wait until the vpc reached available state
-#
-#Example for setting the wait:
-#
-#hints/vpc/example_wait_for_vpc
-#
-#- Tag the VPC with name: opsschool-1
-#
-#No hints... Use boto documentation...
-#
-#- Run pylint on your code and fix the finding (pylint yourcode.py)
-#If it's not already installed, here is a reference: https://www.pylint.org/
-
 import argparse
 import boto3
 
