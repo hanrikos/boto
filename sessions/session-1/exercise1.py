@@ -2,8 +2,8 @@ import argparse
 import boto3
 
 
-EC2 = boto3.resource('ec2')
 EC2_CLIENT = boto3.client('ec2')
+
 
 def args_parser():
     """ validate arguments and return them """
@@ -19,6 +19,7 @@ def args_parser():
 
 def create_vpc(cidr, tenancy, region):
     """ Return VPC description after creation """
+    EC2 = boto3.resource('ec2', region)
     response = EC2.create_vpc(CidrBlock=cidr, InstanceTenancy=tenancy)
     return response
 

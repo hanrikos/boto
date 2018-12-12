@@ -3,7 +3,7 @@ import boto3
 
 
 EC2 = boto3.resource('ec2')
-EC2_CLIENT = boto3.client('ec2')
+
 
 def args_parser():
     """ validate arguments and return them """
@@ -13,13 +13,14 @@ def args_parser():
     return parser.parse_args()
 
 
-def create_vpc(cidr, tenancy, region):
+def create_vpc(cidr, tenancy):
     """ Return VPC description after creation """
     response = EC2.create_vpc(CidrBlock=cidr, InstanceTenancy=tenancy)
     return response
 
 
-def list_existing_vpcs():
+def list_existing_vpcs(args):
+    EC2_CLIENT = boto3.client('ec2', args.region)
     vpc_ids=[]
     try:
         response = EC2_CLIENT.describe_vpcs()
@@ -82,7 +83,7 @@ def attach_dhcp_to_vpc(selected_vpc, dhcp_options):
 
 
 def main(args):
-    vpc_ids = list_existing_vpcs()
+    vpc_ids = list_existing_vpcs(args)
     selected_vpc = select_vpc(vpc_ids)
     ig = create_internet_gateway()
     attach_internet_getaway(selected_vpc, ig)
