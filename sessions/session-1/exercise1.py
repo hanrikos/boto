@@ -51,7 +51,7 @@ def create_vpc(cidr, tenancy, region):
     response = EC2.create_vpc(CidrBlock=cidr, InstanceTenancy=tenancy)
     return response
 
-EC2
+
 def main(args):
     print(args.cidr)
     vpc = create_vpc(args.cidr, args.tenancy, args.region)
